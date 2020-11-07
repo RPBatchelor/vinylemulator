@@ -1,40 +1,4 @@
 
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@RPBatchelor
-Learn Git and GitHub without any code!
-
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-hankhank10 /
-vinylemulator
-
-10
-89
-
-    11
-
-Code
-Issues 2
-Pull requests 1
-Actions
-Projects
-Wiki
-Security
-
-    Insights
-
-vinylemulator/readnfc.py /
-@lukatmyshuasapp
-lukatmyshuasapp Adding support for also writing tags
-Latest commit 14a8a73 on Jul 4
-History
-2 contributors
-@hankhank10
-@lukatmyshuasapp
-143 lines (113 sloc) 5.19 KB
 import time
 import nfc
 import requests

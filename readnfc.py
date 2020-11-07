@@ -132,6 +132,21 @@ def connect_to_reader():
     print("")
     return reader         
  
+ def sonos_api_connection():
+    sonos_room_local = usersettings.sonos_room
+    print("API address is set to " + usersettings.sonos_http_address)
+    print("Sonos room is set to " + sonos_room_local)
+    print("Trying to connect to Sonos API...")
+    try:
+        r = requests.get(usersettings.sonos_http_address)
+    except:
+        print("... API not responding. I'll keep trying")
+    
+    if r.status_code == 200:
+        print("... and API is responding. ")
+        print("Ready! Present and NFC tag")
+    
+    return True
 
 
 # Initialise the reader
