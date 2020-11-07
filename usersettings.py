@@ -5,10 +5,10 @@
 sonos_http_address="http://localhost:5005"
 
 #set the name of the Sonos room you want to play the music in
-sonos_room=""
+sonos_room="Living Room"
 
 #send anonymous usage statistics
-sendanonymoususagestatistics="yes"
+sendanonymoususagestatistics="no"
 
 #if you are getting erros saying your nfc reader can not be found do the following:
 #type lsusb into a terminal on your raspberry pi and enter
@@ -17,3 +17,7 @@ sendanonymoususagestatistics="yes"
 #then replace "usb" with "usb:072f:2200"
 #(or whatever lsusb outputted for your nfc reader)
 nfc_reader_path="usb"
+
+
+# Set the Spotify developer credentials
+# These are in secrets.py which is ignored by git
