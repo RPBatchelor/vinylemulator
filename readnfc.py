@@ -14,9 +14,9 @@ import difflib
 
 
 def find_uri_from_spotify(album, artist):
-   print(f'Looking up album {album} by artist {artist}') 
+   print("Looking up album " + str(album) + " by artist " + str(artist)) 
    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(secrets.spotipy_client_id, secrets.spotipy_client_secret))
-   results = sp.search(f'album:{album} artist:{artist}', type="album")
+   results = sp.search('album:' + str(album) + " artist:" + str(artist), type="album")
    albums = results['albums']['items']
    items = {a['name']:a['uri'] for a in albums}
    elem = difflib.get_close_matches(album, items.keys(), 1)[0]
@@ -26,32 +26,32 @@ def find_uri_from_spotify(album, artist):
 def find_current_album():
    url = "/".join((usersettings.sonos_http_address, usersettings.sonos_room, "state"))
    response = requests.get(url)
-   items = response.json()s
+   items = response.json()
    return items['currentTrack']['album'], items['currentTrack']['artist']
 
 def write_current_album(tag):
    res = find_current_album()
    if not res:
-      print "No album found"
+      print("No album found")
       return False
 
    album, artist = res
-   print(f'Current album {album} by artist {artist}') 
+   print('Current album ' + str(album) + "by artist " + str(artist)) 
    uri = find_uri_from_spotify(album, artist)
 
    print('URI is '+ str(uri))
 
-   print "Formatting tag"
+   print("Formatting tag")
    tag.format()
 
-   print("Tag Formatted " + str(tag)
+   print("Tag Formatted " + str(tag))
    record = ndef.TextRecord(uri)
    tag.ndef.records = [record]
  
-   print "Finished writing NDEF"  
+   print("Finished writing NDEF")  
 
    say_command = "Finished creating tag for artist %s and album %s" % (artist, album)
-   url = "/".join((usersettings.sonoshttpaddress,usersettings.sonosroom, "say",say_command))
+   url = "/".join((usersettings.sonos_http_address,usersettings.sonos_room, "say",say_command))
    requests.get(url)
    return True 
 
@@ -82,10 +82,10 @@ def touched(tag):
             
             # Check if Sonos "command" or room change read from NFC
             if received_text_lower.startswith('command'):
-                service_type "command"
+                service_type = "command"
                 sonos_instruction = received_text[8:]
 
-             if service_type == "":
+            if service_type == "":
                 print("Service type not recognised. NFC tag text should begin with spotify, tunein, command or room.")
                 return True
             
